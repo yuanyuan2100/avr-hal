@@ -341,7 +341,7 @@ macro_rules! impl_twi_i2c {
                 Ok(())
             }
 
-            fn wait(&mut self) {
+            pub fn wait(&mut self) {
                 while self.p.twcr.read().twint().bit_is_clear() { }
             }
 
