@@ -281,7 +281,7 @@ macro_rules! impl_twi_i2c {
                 }
             }
 
-            fn start(
+            pub fn start(
                 &mut self,
                 addr: u8,
                 dir: $crate::i2c::Direction,
@@ -345,7 +345,7 @@ macro_rules! impl_twi_i2c {
                 while self.p.twcr.read().twint().bit_is_clear() { }
             }
 
-            fn transact(&mut self) {
+            pub fn transact(&mut self) {
                 self.p.twcr.write(|w| w.twen().set_bit().twint().set_bit());
                 while self.p.twcr.read().twint().bit_is_clear() { }
             }
@@ -405,7 +405,7 @@ macro_rules! impl_twi_i2c {
                 Ok(())
             }
 
-            fn stop(&mut self) {
+            pub fn stop(&mut self) {
                 self.p.twcr.write(|w| w
                     .twen().set_bit()
                     .twint().set_bit()
